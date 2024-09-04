@@ -55,7 +55,3 @@ The `ParallelSum` program is considered a true parallel program because it lever
 - **Optimized Task Scheduling:** The `ForkJoinPool` is optimized for parallel execution. It dynamically balances the workload and efficiently uses all available cores.
 - **Reduced Context Switching:** Unlike traditional multithreading models, the `ForkJoinPool` minimizes context switching by reducing the number of threads needed and employing a work-stealing algorithm to efficiently use idle threads.
 - **Minimal Locking:** The recursive task model minimizes synchronization requirements, as each task works independently on its data segment.
-
-### Conclusion
-
-The `ParallelSum` program is a true parallel program because it uses the `ForkJoinPool` framework to divide the work into smaller tasks that can be executed simultaneously on different cores. This enables the program to take full advantage of multi-core CPUs, providing genuine parallel execution and performance gains compared to a concurrent but not truly parallel approach like the one used in `ConcurrentSum`.
