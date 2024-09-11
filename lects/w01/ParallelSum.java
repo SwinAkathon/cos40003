@@ -38,6 +38,10 @@ class ParallelSum {
         threadCount = Thread.getAllStackTraces().keySet().size();
         System.out.println("Number of threads during computation: " + threadCount);
 
+        // Shut down the executor and wait for all tasks to finish
+        pool.shutdown();
+        while (!pool.isTerminated()) {}
+
         // End time tracking
         long endTime = System.nanoTime();
         long duration = (endTime - startTime) / 1_000_000; // Convert to milliseconds
