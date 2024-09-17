@@ -1,3 +1,10 @@
+# exclude labs
+lab
+
+# exclude lects
+lects/w03/scheduling
+lects/w03/chapter12
+
 # Compiled class file
 *.class
 
@@ -23,5 +30,4 @@
 hs_err_pid*
 replay_pid*
 
-# exclude labs
-lab
+
