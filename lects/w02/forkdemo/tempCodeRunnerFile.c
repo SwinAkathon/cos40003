@@ -1,1 +1,0 @@
-lect_exercise.c
