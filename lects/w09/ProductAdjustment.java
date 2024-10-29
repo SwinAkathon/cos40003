@@ -11,6 +11,7 @@ class ProductAdjustment implements Runnable {
 
     @Override
     public void run() {
+        // Lock Product first, then Order to maintain consistent locking order
         synchronized (product) {
             System.out.println(Thread.currentThread().getName() + " locked Product with ID " + product.getId());
 
