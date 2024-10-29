@@ -1,4 +1,3 @@
-import java.util.concurrent.TimeUnit;
 
 public class OrderProcessor implements Runnable {
     private final Order order;
@@ -24,7 +23,7 @@ public class OrderProcessor implements Runnable {
                         System.out.println(Thread.currentThread().getName() + " adjusted quantity on Product with ID " + product.getId());
                     } else {
                         System.out.println(Thread.currentThread().getName() + " could not reserve stock on Product, rolling back Order fulfillment.");
-                        order.cancelOrder();  // Rollback if unable to reserve stock
+                        order.cancelOrder();  // Rollback IF unable to reserve stock
                     }
                 } finally {
                     order.lock.unlock();
