@@ -9,18 +9,19 @@ public class OrderProcessor implements Runnable {
 
     @Override
     public void run() {
+        // Acquire all necessary locks together
         synchronized (order) {
-            System.out.println(Thread.currentThread().getName() + " locked Order with ID " + order.getId());
+          synchronized (product) {
+                System.out.println(Thread.currentThread().getName() + " locked Product with ID " + product.getId());
+                System.out.println(Thread.currentThread().getName() + " locked Order with ID " + order.getId());
 
-            try {
-                Thread.sleep(100);  // Simulate work with Order resource
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println(Thread.currentThread().getName() + " waiting to lock Product with ID " + product.getId());
-            synchronized (product) {
-                System.out.println(Thread.currentThread().getName() + " locked Product and completed order processing.");
+                try {
+                    // Simulate work with Product and Order resources
+                    Thread.sleep(100);
+                    System.out.println(Thread.currentThread().getName() + " completed order processing.");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
