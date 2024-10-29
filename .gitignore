@@ -1,12 +1,17 @@
 # exclude labs
 lab
 
+# exclude demos
+*/demo
+
 # exclude lects
 lects/w03/scheduling
 lects/w03/chapter12
 #w04
 #w05
 w06/c
+
+w11
 
 # Compiled class file
 *.class
