@@ -1,8 +1,9 @@
+import java.util.concurrent.locks.ReentrantLock;
 
-class Order {
-
+public class Order {
     private final int id;
     private String status;
+    public final ReentrantLock lock = new ReentrantLock();
 
     public Order(int id) {
         this.id = id;
@@ -17,7 +18,27 @@ class Order {
         return status;
     }
 
+    // Fulfill order safely using order.lock
     public void fulfillOrder() {
-        status = "Fulfilled";
+        lock.lock();
+        try {
+            if (status.equals("Pending")) {
+                status = "Fulfilled";
+            }
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    // Cancel order safely
+    public void cancelOrder() {
+        lock.lock();
+        try {
+            if (status.equals("Pending")) {
+                status = "Canceled";
+            }
+        } finally {
+            lock.unlock();
+        }
     }
 }

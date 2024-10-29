@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class OrderProcessor implements Runnable {
     private final Order order;
     private final Product product;
@@ -9,19 +11,29 @@ public class OrderProcessor implements Runnable {
 
     @Override
     public void run() {
-        synchronized (order) {
-            System.out.println(Thread.currentThread().getName() + " locked Order with ID " + order.getId());
+        try {
+            // Attempt to fulfill the order first in a lock-safe way
+            if (order.lock.tryLock(100, TimeUnit.MILLISECONDS)) {
+                try {
+                    order.fulfillOrder();
+                    System.out.println(Thread.currentThread().getName() + " fulfilled Order with ID " + order.getId());
 
-            try {
-                Thread.sleep(100);  // Simulate work with Order resource
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                    // Adjust Product quantity if order is successfully fulfilled
+                    if (product.reserveStock(10)) {  // Reserve stock in a lock-safe way
+                        product.adjustQuantity(-10);  // Adjust the quantity safely
+                        System.out.println(Thread.currentThread().getName() + " adjusted quantity on Product with ID " + product.getId());
+                    } else {
+                        System.out.println(Thread.currentThread().getName() + " could not reserve stock on Product, rolling back Order fulfillment.");
+                        order.cancelOrder();  // Rollback if unable to reserve stock
+                    }
+                } finally {
+                    order.lock.unlock();
+                }
+            } else {
+                System.out.println(Thread.currentThread().getName() + " could not lock Order for processing.");
             }
-
-            System.out.println(Thread.currentThread().getName() + " waiting to lock Product with ID " + product.getId());
-            synchronized (product) {
-                System.out.println(Thread.currentThread().getName() + " locked Product and completed order processing.");
-            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
