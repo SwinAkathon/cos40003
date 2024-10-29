@@ -1,6 +1,4 @@
-// ProductAdjustment class: Locks Product first and waits for Order
-class ProductAdjustment implements Runnable {
-
+public class ProductAdjustment implements Runnable {
     private final Product product;
     private final Order order;
 
@@ -11,6 +9,7 @@ class ProductAdjustment implements Runnable {
 
     @Override
     public void run() {
+        // Lock Product first, then Order to maintain consistent locking order
         synchronized (product) {
             System.out.println(Thread.currentThread().getName() + " locked Product with ID " + product.getId());
 

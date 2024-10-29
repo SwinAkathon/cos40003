@@ -1,6 +1,4 @@
-// OrderProcessing class: Locks Order first and waits for Product
-class OrderProcessor implements Runnable {
-
+public class OrderProcessor implements Runnable {
     private final Order order;
     private final Product product;
 
