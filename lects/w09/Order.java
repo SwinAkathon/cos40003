@@ -1,8 +1,6 @@
-
-class Order {
-
+public class Order {
     private final int id;
-    private String status;
+    private volatile String status;  // Use volatile for non-mutex updates
 
     public Order(int id) {
         this.id = id;
@@ -17,7 +15,20 @@ class Order {
         return status;
     }
 
-    public void fulfillOrder() {
-        status = "Fulfilled";
+    // Atomically update order status without strict locking
+    public boolean fulfillOrder() {
+        if ("Pending".equals(status)) {
+            status = "Fulfilled";
+            return true;
+        }
+        return false;
+    }
+
+    public boolean cancelOrder() {
+        if ("Pending".equals(status)) {
+            status = "Canceled";
+            return true;
+        }
+        return false;
     }
 }

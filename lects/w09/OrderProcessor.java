@@ -9,19 +9,18 @@ public class OrderProcessor implements Runnable {
 
     @Override
     public void run() {
-        synchronized (order) {
-            System.out.println(Thread.currentThread().getName() + " locked Order with ID " + order.getId());
+        // Non-exclusive attempt to fulfill the Order
+        if (order.fulfillOrder()) {
+            System.out.println(Thread.currentThread().getName() + " fulfilled Order with ID " + order.getId());
 
-            try {
-                Thread.sleep(100);  // Simulate work with Order resource
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (product.adjustQuantity(-10)) {  // Adjust product quantity if order is fulfilled
+                System.out.println(Thread.currentThread().getName() + " adjusted quantity for Product with ID " + product.getId());
+            } else {
+                System.out.println(Thread.currentThread().getName() + " could not adjust Product quantity, rolling back order.");
+                order.cancelOrder();  // Rollback order if quantity adjustment fails
             }
-
-            System.out.println(Thread.currentThread().getName() + " waiting to lock Product with ID " + product.getId());
-            synchronized (product) {
-                System.out.println(Thread.currentThread().getName() + " locked Product and completed order processing.");
-            }
+        } else {
+            System.out.println(Thread.currentThread().getName() + " could not fulfill Order due to current status.");
         }
     }
 }

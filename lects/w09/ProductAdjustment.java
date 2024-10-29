@@ -9,20 +9,18 @@ public class ProductAdjustment implements Runnable {
 
     @Override
     public void run() {
-        // Lock Product first, then Order to maintain consistent locking order
-        synchronized (product) {
-            System.out.println(Thread.currentThread().getName() + " locked Product with ID " + product.getId());
+        // Non-exclusive check and update for Product quantity and Order status
+        if (product.adjustQuantity(-10)) {  // Try to reserve 10 units
+            System.out.println(Thread.currentThread().getName() + " adjusted quantity for Product with ID " + product.getId());
 
-            try {
-                Thread.sleep(100);  // Simulate work with Product resource
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (order.fulfillOrder()) {  // Non-mutex attempt to fulfill the order
+                System.out.println(Thread.currentThread().getName() + " fulfilled Order with ID " + order.getId());
+            } else {
+                System.out.println(Thread.currentThread().getName() + " could not fulfill Order, rolling back product adjustment.");
+                product.adjustQuantity(10);  // Rollback adjustment if order can't be fulfilled
             }
-
-            System.out.println(Thread.currentThread().getName() + " waiting to lock Order with ID " + order.getId());
-            synchronized (order) {
-                System.out.println(Thread.currentThread().getName() + " locked Order and completed product adjustment.");
-            }
+        } else {
+            System.out.println(Thread.currentThread().getName() + " could not adjust Product quantity due to insufficient stock.");
         }
     }
 }
