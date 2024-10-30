@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class VectorDeadLock {
@@ -20,7 +21,7 @@ public class VectorDeadLock {
         Thread thread1 = new Thread(() -> {
             System.out.println("Thread 1: Obtaining lock(v1)...");
             synchronized (v1) {
-            System.out.println("Thread 1: Got lock(v1)");
+                System.out.println("Thread 1: Got lock(v1)");
                 try {
                     // Sleep to increase the chance of deadlock
                     Thread.sleep(100);
