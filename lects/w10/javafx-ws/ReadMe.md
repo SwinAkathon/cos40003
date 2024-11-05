@@ -3,14 +3,13 @@ GUI Application Development with JavaFX
 --------------------------------------------
 
 # Scope and Prerequisites
-The materials presented here came from the book ["Introduction to Programming Using Java (Version 9.0, JavaFX Edition)"](https://math.hws.edu/javanotes/index.html) by David J. Eck. 
+The materials presented in this tutorial are from the book ["Introduction to Programming Using Java (Version 9.0, JavaFX Edition)"](https://math.hws.edu/javanotes/index.html) by David J. Eck. 
 
 - **Chapters in scope**: 6
 
 This tutorial assumes Java JDK 17 or above.
 
 In order to compile and run JavaFX applications, follow the instructions in [Section 2.6](https://math.hws.edu/javanotes/c2/s6.html) of the book to set up JavaFX for use in your IDE. In particular, if you compile-run your application from the command line then read [Section 2.6.7](https://math.hws.edu/javanotes/c2/s6.html#basics.6.7).
-
 
 # 6.1: A Basic JavaFX Application
 
