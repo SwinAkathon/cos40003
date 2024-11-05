@@ -5,7 +5,7 @@ GUI Application Development with JavaFX
 # Scope and Prerequisites
 The materials presented in this tutorial are from the book ["Introduction to Programming Using Java (Version 9.0, JavaFX Edition)"](https://math.hws.edu/javanotes/index.html) by David J. Eck. 
 
-- **Chapters in scope**: 6
+- **Chapters in scope**: 6, 13
 
 This tutorial assumes Java JDK 17 or above.
 
@@ -539,3 +539,8 @@ In order to compile and run JavaFX applications, follow the instructions in [Sec
 - Requires specifying module path, main class, and output format.
 
 ---
+
+# What's next
+- [Chapter 12](https://math.hws.edu/javanotes/c12/index.html): consolidates threaded programming in Java
+- [Chapter 13](https://math.hws.edu/javanotes/c13/index.html): provides slightly more advanced topics in UI programming
+- Solve the Sudokui challenge (see Canvas for details)!
