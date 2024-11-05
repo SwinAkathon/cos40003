@@ -11,7 +11,7 @@ This tutorial assumes Java JDK 17 or above.
 
 In order to compile and run JavaFX applications, follow the instructions in [Section 2.6](https://math.hws.edu/javanotes/c2/s6.html) of the book to set up JavaFX for use in your IDE. In particular, if you compile-run your application from the command line then read [Section 2.6.7](https://math.hws.edu/javanotes/c2/s6.html#basics.6.7).
 
-The Java source code files can be downloaded from [this link](https://math.hws.edu/eck/cs124/downloads/javanotes9-example-programs.zip) on the book's web site.
+The entire Java source code files of the book can be downloaded from [this link](https://math.hws.edu/eck/cs124/downloads/javanotes9-example-programs.zip) on the book's web site.
 
 # 6.1: A Basic JavaFX Application
 
