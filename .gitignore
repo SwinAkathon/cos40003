@@ -11,8 +11,8 @@ lects/w03/chapter12
 #w05
 w06/c
 
-# exclude w11
-w11
+# exclude w11 sudoku's solutions
+lects/w11/sudoku*
 
 # Compiled class file
 *.class
