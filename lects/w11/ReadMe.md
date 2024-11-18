@@ -1,12 +1,7 @@
-Lecture 11:
-======================
+Lecture 11: Sudoku an Extra materials (for Akathon)
+-------------------------------------------
 
-# Sudoku solver
-Several versions are presented in this directory:
-
-1. `./givenSudoku`: the source code given on Canvas for the lecture
-2. Other versions present different implementations, leading to the UI-based programs that displays progressive status of the solver. These demonstrate a useful case study for concurrent program: UI-based status update of a long-running task. Read the `ReadMe.md` file of each version for details:
-   1. `./sudoku/ReadMe.md`
-   2. `./sudokuBasic/ReadMe.md`
-   3. `./sudokuUI/ReadMe.md`
-   4. `./sudokuUI2/ReadMe.md`
+1. Sudoku algorithm: see `./givenSudoku/ReadMe.md` for deails.
+   1. additional algorithms and UI version are discussed in lab-11.
+2. UI application development with JavaFX: As an enhancement, you will find in this directory extra learning materials for Akathon. 
+   - See `./javafx-ws` for details.
